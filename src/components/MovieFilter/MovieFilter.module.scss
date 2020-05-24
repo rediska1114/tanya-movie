@@ -3,6 +3,84 @@
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	padding: 40px;
-	background-color: rgb(236, 236, 236);
+	padding: 24px;
+	background: var(--background-2);
+	border-radius: var(--border-radius-big);
+	max-width: 800px;
+	width: 100%;
+}
+
+.Block {
+	display: flex;
+	width: 100%;
+}
+
+.Block + .Block {
+	margin-top: 32px;
+}
+
+.Button {
+	margin-left: 24px;
+}
+
+.Search {
+	flex: 1;
+}
+
+.Title {
+	display: flex;
+	align-items: center;
+	font-size: 24px;
+	color: var(--color-typo-main);
+	margin-bottom: 16px;
+}
+
+.BlockWithTitle {
+	display: flex;
+	flex-direction: column;
+}
+
+.ShowMore {
+	margin-left: 12px;
+	color: var(--color-typo-primary);
+	font-size: 18px;
+
+	transition: var(--transition);
+	cursor: pointer;
+
+	&:hover {
+		color: var(--color-typo-primary-light);
+	}
+}
+
+.GenresContainer {
+	// display: flex;
+	width: 100%;
+	margin: -6px;
+}
+.Genres {
+	flex: 1 0;
+	display: flex;
+	width: 100%;
+	flex-wrap: wrap;
+}
+.Loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 18px;
+	line-height: 24px;
+	padding: 8px;
+	margin: 6px;
+}
+
+.RatingBlock {
+	flex: 1 0;
+}
+.ReleaseBlock {
+	flex: 1.5 0;
+	margin-left: 50px;
+}
+.Slider {
+	margin-top: 16px;
 }

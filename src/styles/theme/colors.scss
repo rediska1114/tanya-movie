@@ -1,3 +1,30 @@
+$primary: #0094ff;
+$primary-light: #43b0ff;
+
 .default-theme {
-	--color-main: #fff;
+	--color-primary: #{$primary};
+	--color-primary-light: #{$primary-light};
+
+	--background: #111213;
+	--background-2: #252525;
+	--background-3: #363636;
+	--background-control: #383838;
+	--background-primary: linear-gradient(90deg, #{$primary} 0%, #{$primary-light} 100%);
+
+	--color-typo-main: #ffffff;
+	--color-typo-primary: #{$primary};
+	--color-typo-primary-light: #{$primary-light};
+	--color-typo-disabled: #999a9b;
+
+	--color-stroke: #fff;
+	--color-stroke-primary: #{$primary};
+	--color-stroke-primary-light: #{$primary-light};
+	--color-stroke-disabled: #383838;
+
+	--color-divider: rgba(251, 251, 251, 0.15);
+
+	--color-shadow-primary: rgba(0, 148, 255, 0.5);
+	--color-shadow-primary-light: rgba(67, 177, 255, 0.5);
+
+	--color-transparent: rgba(0, 0, 0, 0);
 }

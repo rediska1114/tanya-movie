@@ -1,0 +1,38 @@
+.Input {
+	display: flex;
+	flex: 1 0;
+	height: 100%;
+	background-color: var(--color-transparent);
+	border: none;
+
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 24px;
+	padding: 12px 0;
+
+	color: var(--color-typo-main);
+
+	&:focus {
+		outline: none;
+	}
+	&::placeholder {
+		color: var(--color-typo-disabled);
+	}
+}
+.Wrapper {
+	display: flex;
+	align-items: center;
+	flex-shrink: 0;
+	border-radius: 8px;
+	background-color: var(--background-control);
+	padding: 0 12px;
+
+	cursor: pointer;
+
+	&::before {
+		height: 24px;
+		width: 24px;
+		content: url('../../assets/images/ic_search.svg');
+		margin-right: 16px;
+	}
+}

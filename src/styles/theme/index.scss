@@ -1,1 +1,46 @@
 @import 'colors';
+@import 'sizes';
+@import 'fonts';
+
+.default-theme {
+	--transition: 300ms ease;
+}
+
+.default-theme {
+	.MuiSlider-rail {
+		background: var(--background-control);
+	}
+	.MuiSlider-track {
+		background: var(--background-primary);
+	}
+	.MuiSlider-thumb {
+		background: #ffffff;
+
+		box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+
+		&:hover {
+			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+		}
+		&.MuiSlider-active {
+			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+			z-index: 100;
+		}
+	}
+	.MuiSlider-valueLabel {
+		top: -16px;
+		left: unset;
+
+		& > span {
+			transform: none;
+			width: unset;
+
+			height: 20px;
+			border-radius: var(--border-radius-small);
+			background: #0094ff;
+			& > span {
+				padding: 0 4px;
+				transform: none;
+			}
+		}
+	}
+}
