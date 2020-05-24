@@ -2,31 +2,37 @@ import React from 'react'
 import styles from './App.module.scss'
 import classNames from 'classnames'
 import { AppProps } from './App.d'
+import { History } from '../utils'
+import { Router, Switch, Route } from 'react-router'
+import { routes } from '../enums'
+import { Main, List } from '../pages'
+import { connect, MapDispatchToProps } from 'react-redux'
+import { IAppState, TDispatch } from '../store'
 
 const App: React.FC<AppProps.Props> = props => {
 	const { className } = props
 
-	return <div className={classNames(styles.App, className)}>Hello, it's App</div>
+	return (
+		<div className={classNames(styles.App, className)}>
+			<Router history={History}>
+				<Switch>
+					<Route exact path={routes.main} component={Main} />
+					<Route exact path={routes.list} component={List} />
+				</Switch>
+			</Router>
+		</div>
+	)
 }
 
 App.defaultProps = {}
 
-// const mapStateToProps = (state: IAppState): AppProps.Store => ({
-// 	...state.root,
-// 	...state.App
-// });
+const mapStateToProps = (state: IAppState): AppProps.Store => state.root
 
-// const mapDispatchToProps: MapDispatchToProps<
-// 	AppProps.Dispatch,
-// 	App.Own
-// > = (dispatch: TDispatch) => ({
-// 	setTest: (test: test) =>
-// 		dispatch({ type: AppActions.TEST, payload: { test } })
-// });
+const mapDispatchToProps: MapDispatchToProps<AppProps.Dispatch, AppProps.Own> = (
+	dispatch: TDispatch
+) => ({
+	// setTest: (test: test) =>
+	// 	dispatch({ type: AppActions.TEST, payload: { test } })
+})
 
-// export default connect(
-// 	mapStateToProps,
-// 	mapDispatchToProps
-// )(App);
-
-export default App
+export default connect(mapStateToProps, mapDispatchToProps)(App)
