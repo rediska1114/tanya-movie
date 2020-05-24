@@ -1,3 +1,4 @@
+import { IFilter } from './../../interfaces'
 import { IConfiguration, IGenre } from '../../interfaces'
 
 export interface IAppState {
@@ -10,5 +11,6 @@ export interface IRootState {
 }
 export interface IFilterState {
 	genres?: IGenre[]
+	filter: IFilter
 }
 export interface IMoviesState {}

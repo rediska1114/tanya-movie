@@ -4,10 +4,15 @@ import classNames from 'classnames'
 import { SliderProps } from './Slider.d'
 
 import Range from '@material-ui/core/Slider'
-import { SliderValueLabel } from './SliderValueLabel'
 
 const Slider: React.FC<SliderProps.Props> = props => {
-	const { className, ...otherProps } = props
+	const { className, onChange, value, ...otherProps } = props
+	const _onChange = (e: any, val: number | number[]) => {
+		const val_arr = Array.isArray(val) ? val : [val]
+		if (onChange) {
+			if (!value || value.join('') !== val_arr.join('')) onChange(val_arr)
+		}
+	}
 
 	return (
 		<Range
@@ -15,6 +20,8 @@ const Slider: React.FC<SliderProps.Props> = props => {
 			getAriaValueText={value => value + ''}
 			valueLabelDisplay='on'
 			aria-labelledby='range-slider'
+			value={value}
+			onChange={_onChange}
 			{...otherProps}
 		></Range>
 	)

@@ -19,8 +19,8 @@
 
 	&.Active {
 		border-color: var(--color-stroke-primary);
+		color: var(--color-typo-main);
 	}
-	&.Active,
 	&:hover {
 		border-color: var(--color-stroke-primary-light);
 		color: var(--color-typo-main);

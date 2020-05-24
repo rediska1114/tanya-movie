@@ -1,13 +1,17 @@
 import { IFilterState } from '../../store'
+import { IFilter } from '../../interfaces'
 
 export declare namespace MovieFilterProps {
 	interface Own {
 		className?: string
+		onSubmit?(): void
 	}
 
 	interface Store extends IFilterState {}
 
-	interface Dispatch {}
+	interface Dispatch {
+		setValue: (name: keyof IFilter, value: string | number[]) => void
+	}
 
 	interface State {}
 

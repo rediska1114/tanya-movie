@@ -7,6 +7,7 @@ export declare namespace SliderProps {
 		max?: number
 		value?: number[]
 		defaultValue?: number[]
+		onChange?(value: number[]): void
 	}
 
 	interface Store {} // extends IRootState, ISliderState

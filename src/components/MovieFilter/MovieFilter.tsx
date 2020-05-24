@@ -4,32 +4,41 @@ import classNames from 'classnames'
 import AnimateHeight from 'react-animate-height'
 import { MovieFilterProps } from './MovieFilter.d'
 import { connect, MapDispatchToProps } from 'react-redux'
-import { IAppState, TDispatch } from '../../store'
+import { IAppState, TDispatch, FilterActions } from '../../store'
 import { Button, Chip, Input } from '..'
 import Slider from '../Slider'
+import { IFilter } from '../../interfaces'
 
 const CURRENT_YEAR = new Date().getFullYear()
 
 const MovieFilter: React.FC<MovieFilterProps.Props> = props => {
-	const { className, genres } = props
+	const { className, genres, setValue, filter, onSubmit } = props
 
 	const [isGenresOpen, setGenresOpen] = useState<boolean>(false)
 
-	const onChange = (name: string, event: React.ChangeEvent<HTMLSelectElement>) => {}
-	/*
-    поиск по названию фильма
-    фильтр по жанру
-    фильтр по рейтингу
-    фильтр по году
-    кнопку, по которой осуществляется поиск (а на первой странице еще и переход ко второй)
-    */
-	const onGenreClick = (id: number) => {}
+	const onGenreClick = (id: number) => {
+		if (filter.genres.includes(id)) {
+			setValue(
+				'genres',
+				filter.genres.filter(g => g !== id)
+			)
+		} else {
+			setValue('genres', [...filter.genres, id])
+		}
+	}
 
 	return (
 		<div className={classNames(styles.MovieFilter, className)}>
 			<div className={styles.Block}>
-				<Input className={styles.Search} placeholder='Enter movie title' />
-				<Button className={styles.Button}>Search</Button>
+				<Input
+					className={styles.Search}
+					placeholder='Enter movie title'
+					onChange={setValue.bind(null, 'search')}
+					value={filter.search}
+				/>
+				<Button className={styles.Button} onClick={onSubmit}>
+					Search
+				</Button>
 			</div>
 
 			<div className={classNames(styles.Block, styles.BlockWithTitle)}>
@@ -49,7 +58,12 @@ const MovieFilter: React.FC<MovieFilterProps.Props> = props => {
 						<div className={styles.Loading}>loading...</div>
 					) : (
 						genres.map(({ id, name }) => (
-							<Chip key={id} active={false} text={name} onClick={onGenreClick.bind(null, id)} />
+							<Chip
+								key={id}
+								active={filter.genres.includes(id)}
+								text={name}
+								onClick={onGenreClick.bind(null, id)}
+							/>
 						))
 					)}
 				</AnimateHeight>
@@ -59,7 +73,13 @@ const MovieFilter: React.FC<MovieFilterProps.Props> = props => {
 				<div className={classNames(styles.BlockWithTitle, styles.RatingBlock)}>
 					<div className={styles.Title}>Rating</div>
 
-					<Slider className={styles.Slider} min={0} max={10} defaultValue={[0, 10]} />
+					<Slider
+						className={styles.Slider}
+						min={0}
+						max={10}
+						onChange={setValue.bind(null, 'rating')}
+						value={filter.rating}
+					/>
 				</div>
 
 				<div className={classNames(styles.BlockWithTitle, styles.ReleaseBlock)}>
@@ -69,7 +89,8 @@ const MovieFilter: React.FC<MovieFilterProps.Props> = props => {
 						className={styles.Slider}
 						min={1917}
 						max={CURRENT_YEAR}
-						defaultValue={[1917, CURRENT_YEAR]}
+						onChange={setValue.bind(null, 'release')}
+						value={filter.release}
 					/>
 				</div>
 			</div>
@@ -84,8 +105,8 @@ const mapStateToProps = (state: IAppState): MovieFilterProps.Store => state.Filt
 const mapDispatchToProps: MapDispatchToProps<MovieFilterProps.Dispatch, MovieFilterProps.Own> = (
 	dispatch: TDispatch
 ) => ({
-	// setTest: (test: test) =>
-	//     dispatch({ type: MovieFilterActions.TEST, payload: { test } })
+	setValue: (name: keyof IFilter, value: IFilter[typeof name]) =>
+		dispatch({ type: FilterActions.SET_VALUE, payload: { name, value } })
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieFilter)

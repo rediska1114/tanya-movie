@@ -4,14 +4,17 @@ import classNames from 'classnames'
 import { MainProps } from './Main.d'
 import { MovieFilter } from '../../components'
 import { ReactComponent as Logo } from '../../assets/images/logo_big.svg'
+import { History } from '../../utils'
+import { routes } from '../../enums'
 
 const Main: React.FC<MainProps.Props> = props => {
 	const { className } = props
 
+	const onSubmit = () => History.push(routes.list)
 	return (
 		<div className={classNames(styles.Main, className)}>
 			<Logo className={styles.Logo} />
-			<MovieFilter />
+			<MovieFilter onSubmit={onSubmit} />
 		</div>
 	)
 }
