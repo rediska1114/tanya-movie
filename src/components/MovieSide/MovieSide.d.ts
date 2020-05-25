@@ -7,7 +7,7 @@ export declare namespace MovieSideProps {
 
 		movie?: IDetailedMovie
 		loading?: boolean
-		poster?: string
+		poster?: string | null
 	}
 
 	interface Store {} // extends IRootState, IMovieSideState

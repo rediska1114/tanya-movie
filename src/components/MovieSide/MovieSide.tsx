@@ -14,51 +14,55 @@ const MovieSide: React.FC<MovieSideProps.Props> = props => {
 		if (onClose) onClose()
 	})
 
-	const info = movie
-		? [
-				{
-					title: 'Slogan',
-					text: movie.tagline || '–'
-				},
-				{
-					title: 'Rating',
-					text: movie.vote_average + '/10'
-				},
-				{
-					title: 'Release Date',
-					text: movie.release_date.split('-').reverse().join('.')
-				},
-				{
-					title: 'Budget',
-					text: getMoneys(movie.budget)
-				},
-				{
-					title: 'Revenue',
-					text: getMoneys(movie.revenue)
-				},
-				{
-					title: 'Duration',
-					text: getMovieDuration(movie.runtime)
-				},
-				{
-					title: 'Genres',
-					text: movie.genres.map(g => g.name).join(', ')
-				},
-				{
-					title: 'Cast',
-					text: movie.credits.cast.map(c => c.name).join(', ')
-				}
-		  ]
-		: []
+	const info = [
+		{
+			title: 'Slogan',
+			text: !movie ? '' : movie?.tagline || '–'
+		},
+		{
+			title: 'Rating',
+			text: !movie ? '' : movie.vote_average + '/10'
+		},
+		{
+			title: 'Release Date',
+			text: !movie ? '' : movie.release_date.split('-').reverse().join('.')
+		},
+		{
+			title: 'Budget',
+			text: !movie ? '' : getMoneys(movie.budget)
+		},
+		{
+			title: 'Revenue',
+			text: !movie ? '' : getMoneys(movie.revenue)
+		},
+		{
+			title: 'Duration',
+			text: !movie ? '' : getMovieDuration(movie.runtime)
+		},
+		{
+			title: 'Genres',
+			text: !movie ? '' : movie.genres.map(g => g.name).join(', ') || '-'
+		},
+		{
+			title: 'Cast',
+			text: !movie ? '' : movie.credits.cast.map(c => c.name).join(', ') || '-'
+		}
+	]
 
 	return (
 		<div className={classNames(styles.MovieSide, className)} {...otherProps} ref={ref}>
 			<div className={styles.Top}>
-				{poster ? (
-					<img className={styles.Poster} src={poster} alt='' />
-				) : (
-					<div className={styles.PosterThumb}>No Image</div>
-				)}
+				<div className={styles.PosterThumb}>
+					{poster !== null ? (
+						poster === '' ? (
+							'Loading...'
+						) : (
+							<img className={styles.Poster} src={poster} alt='' />
+						)
+					) : (
+						'No Image'
+					)}
+				</div>
 				<div className={styles.TitleTextContainer}>
 					<div className={styles.Title}>{movie?.title}</div>
 					<div className={styles.Text}>{movie?.overview}</div>

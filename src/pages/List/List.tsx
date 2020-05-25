@@ -32,8 +32,10 @@ const List: React.FC<ListProps.Props> = props => {
 	const _resolveImage = (src: string | null) =>
 		configuration && src ? resolveImageSize(configuration, src, 'backdrop', 780) : ''
 
-	const _resolvePoster = (src: string | null) =>
-		configuration && src ? resolveImageSize(configuration, src, 'poster', 180) : ''
+	const _resolvePoster = (src: string | null) => {
+		if (!src) return null
+		return configuration ? resolveImageSize(configuration, src, 'poster', 180) : ''
+	}
 
 	useEffect(() => {
 		fetchMovies()
