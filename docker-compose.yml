@@ -1,7 +1,7 @@
 version: '3.5'
 
 services:
-  magenta-frontend:
+  tanya-movie:
     image: tanya/movie:${VERSION}
     container_name: tanya-movie
     restart: always
