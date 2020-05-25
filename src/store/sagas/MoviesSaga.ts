@@ -9,15 +9,17 @@ import { getYear } from '../../utils'
 function* FetchMoviesSaga({ type }: IAction): any {
 	let { search, genres, release, rating } = ((yield select()) as IAppState).Filters.filter
 
-	if (type === MoviesActions.FETCH_MOVIES) {
-		yield put({ type: MoviesActions.RESET_MOVIES, payload: {} })
-	}
+	const reset = type === MoviesActions.FETCH_MOVIES
+
+	if (reset) yield put({ type: MoviesActions.RESET_PAGE, payload: {} })
 
 	let { page: cur_page } = ((yield select()) as IAppState).Movies
 
 	let movies: IMovie[] = []
 	let page = 0
 	let totalPages = 0
+
+	yield put({ type: MoviesActions.SET_LOADING, payload: { loading: true } })
 
 	if (!search.trim()) {
 		try {
@@ -56,8 +58,8 @@ function* FetchMoviesSaga({ type }: IAction): any {
 			console.error(error)
 		}
 	}
-
-	yield put({ type: MoviesActions.ADD_MOVIES, payload: { movies, page, totalPages } })
+	if (reset) yield put({ type: MoviesActions.SET_MOVIES, payload: { movies, page, totalPages } })
+	else yield put({ type: MoviesActions.ADD_MOVIES, payload: { movies, page, totalPages } })
 }
 
 function* FetchDetailedMovieSaga({ payload: { id } }: IAction<{ id: number }>): any {

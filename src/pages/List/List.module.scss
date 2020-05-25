@@ -8,7 +8,8 @@
 }
 .MovieFilterContainer {
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	align-items: center;
 	width: 100%;
 	padding: 0 48px;
 	background: var(--background-2);
@@ -74,4 +75,29 @@
 	max-width: 800px;
 	display: flex;
 	justify-content: center;
+}
+
+.LoadingProgress {
+	position: absolute;
+	bottom: -1px;
+	height: 1px;
+	width: 0;
+	left: 0;
+	background: var(--background-primary);
+	&.LoadingActive {
+		animation: loading 0.5s ease-out;
+	}
+}
+
+@keyframes loading {
+	0% {
+		width: 0;
+	}
+	90% {
+		width: 65%;
+	}
+
+	100% {
+		width: 80%;
+	}
 }

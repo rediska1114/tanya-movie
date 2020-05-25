@@ -21,7 +21,8 @@ const List: React.FC<ListProps.Props> = props => {
 		detailed,
 		loadMoreMovies,
 		page,
-		totalPages
+		totalPages,
+		loading
 	} = props
 
 	const filter_ = useDebounce(filter, 300)
@@ -43,12 +44,18 @@ const List: React.FC<ListProps.Props> = props => {
 		<div className={classNames(styles.List, className)}>
 			<div className={styles.MovieFilterContainer}>
 				<MovieFilter className={styles.MovieFilter} type='header' />
+				<div
+					className={classNames(styles.LoadingProgress, {
+						[styles.LoadingActive]: loading
+					})}
+				></div>
 			</div>
 			<div className={styles.MoviesList}>
 				<InfiniteScroll
 					pageStart={0}
 					loadMore={loadMoreMovies}
 					hasMore={hasMore}
+					threshold={400}
 					loader={
 						<div className={styles.ListLoading} key={0}>
 							Loading ...

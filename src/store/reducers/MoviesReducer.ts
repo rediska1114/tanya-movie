@@ -21,15 +21,32 @@ const MoviesReducer = (state: IMoviesState = initialMovies, action: IAction): IM
 				...state,
 				movies: removeDuplicates([...state.movies, ...movies]),
 				page,
-				totalPages
+				totalPages,
+				loading: false
 			}
 		}
-		case MoviesActions.RESET_MOVIES: {
+		case MoviesActions.SET_MOVIES: {
+			const { movies, page, totalPages } = action.payload
 			return {
 				...state,
-				movies: [],
+				movies: removeDuplicates(movies),
+				page,
+				totalPages,
+				loading: false
+			}
+		}
+		case MoviesActions.RESET_PAGE: {
+			return {
+				...state,
 				page: 0,
 				totalPages: 0
+			}
+		}
+
+		case MoviesActions.SET_LOADING: {
+			return {
+				...state,
+				loading: !!action.payload.loading
 			}
 		}
 

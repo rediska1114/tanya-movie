@@ -20,6 +20,7 @@ export interface IMoviesState {
 		movie?: IDetailedMovie
 		open: boolean
 	}
+	loading?: boolean
 	page: number
 	totalPages: number
 }
