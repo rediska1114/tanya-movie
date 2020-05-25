@@ -10,6 +10,8 @@ $primary-light: #43b0ff;
 	--background-3: #363636;
 	--background-control: #383838;
 	--background-primary: linear-gradient(90deg, #{$primary} 0%, #{$primary-light} 100%);
+	--background-2-transparent: rgba(37, 37, 37, 0.7);
+	--background-3-transparent: rgba(54, 54, 54, 0.7);
 
 	--color-typo-main: #ffffff;
 	--color-typo-primary: #{$primary};

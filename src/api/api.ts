@@ -1,6 +1,8 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import { IApiResponse, ApiResponse } from '../interfaces'
 
+const CURRENT_YEAR = new Date().getFullYear()
+
 const api = axios.create({
 	baseURL: process.env.REACT_APP_API_HOST || '/',
 	headers: {
@@ -29,8 +31,17 @@ export class API {
 		})
 	}
 
-	static DiscoverMovies = () => {
-		return API.request<ApiResponse.Discover.Movie>('/discover/movie', {})
+	static DiscoverMovies = (page: number, genres: number[], rating: number[], release: number[]) => {
+		return API.request<ApiResponse.Discover.Movie>('/discover/movie', {
+			region: 'RU',
+			sort_by: 'release_date.desc',
+			page,
+			with_genres: genres.join('|'),
+			'vote_average.gte': rating[0],
+			'vote_average.lte': rating[1],
+			'release_date.gte': `${release[0]}-01-01`,
+			'release_date.lte': release[1] < CURRENT_YEAR ? `${release[1]}-12-31` : new Date()
+		})
 	}
 
 	static Configuration = () => {

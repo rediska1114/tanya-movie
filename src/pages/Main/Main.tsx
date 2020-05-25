@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styles from './Main.module.scss'
 import classNames from 'classnames'
 import { MainProps } from './Main.d'
