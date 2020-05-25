@@ -2,11 +2,18 @@ import React from 'react'
 import styles from './List.module.scss'
 import classNames from 'classnames'
 import { ListProps } from './List.d'
+import { MovieFilter } from '../../components'
 
 const List: React.FC<ListProps.Props> = props => {
 	const { className } = props
 
-	return <div className={classNames(styles.List, className)}>Hello, it's List</div>
+	return (
+		<div className={classNames(styles.List, className)}>
+			<div className={styles.MovieFilterContainer}>
+				<MovieFilter className={styles.MovieFilter} type='header' />
+			</div>
+		</div>
+	)
 }
 
 List.defaultProps = {}

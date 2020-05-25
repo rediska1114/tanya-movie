@@ -5,6 +5,7 @@ export declare namespace MovieFilterProps {
 	interface Own {
 		className?: string
 		onSubmit?(): void
+		type?: 'block' | 'header'
 	}
 
 	interface Store extends IFilterState {}
