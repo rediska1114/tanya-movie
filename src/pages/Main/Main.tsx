@@ -16,6 +16,15 @@ const Main: React.FC<MainProps.Props> = props => {
 		<div className={classNames(styles.Main, className)}>
 			<Logo className={styles.Logo} />
 			<MovieFilter onSubmit={onSubmit} />
+			<div className={styles.SourceCode}>
+				<a
+					href='https://github.com/rediska1114/tanya-movie'
+					target='_blank'
+					rel='noopener noreferrer'
+				>
+					Source code
+				</a>
+			</div>
 		</div>
 	)
 }

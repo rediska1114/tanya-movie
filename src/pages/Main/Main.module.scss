@@ -9,3 +9,12 @@
 .Logo {
 	margin-bottom: 64px;
 }
+
+.SourceCode {
+	margin-top: 40px;
+	a {
+		color: var(--color-typo-disabled);
+		text-decoration: none;
+		border-bottom: 1px solid var(--color-divider);
+	}
+}
