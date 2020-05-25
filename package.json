@@ -41,7 +41,7 @@
 		"gzip": "gzipper --verbose ./build",
 		"prettier": "prettier --write \"src/**/*.{ts,tsx,css,scss,md,json,js,jsx}\""
 	},
-	"devDependencies": {		
+	"devDependencies": {
 		"husky": "^4.2.5",
 		"lint-staged": "^10.2.6",
 		"prettier": "^2.0.5"
