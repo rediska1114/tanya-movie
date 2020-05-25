@@ -1,7 +1,15 @@
-import { IMovie, IGenre } from '.'
+import { IMovie, IGenre, IDetailedMovie } from '.'
 
 export declare namespace ApiResponse {
 	namespace Discover {
+		interface Movie {
+			page: number
+			results: IMovie[]
+			total_results: number
+			total_pages: number
+		}
+	}
+	namespace Search {
 		interface Movie {
 			page: number
 			results: IMovie[]
@@ -27,6 +35,9 @@ export declare namespace ApiResponse {
 				genres: IGenre[]
 			}
 		}
+	}
+	namespace Movie {
+		type GetDetails = IDetailedMovie
 	}
 }
 

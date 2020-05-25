@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import styles from './List.module.scss'
 import classNames from 'classnames'
 import { ListProps } from './List.d'
@@ -7,20 +7,37 @@ import { connect, MapDispatchToProps } from 'react-redux'
 import { IAppState, TDispatch, MoviesActions } from '../../store'
 import useDebounce from '../../hooks/useDebounce'
 import { resolveImageSize } from '../../utils'
+import InfiniteScroll from 'react-infinite-scroller'
 
 const List: React.FC<ListProps.Props> = props => {
-	const { className, filter, fetchMovies, movies, configuration } = props
+	const {
+		className,
+		filter,
+		fetchMovies,
+		movies,
+		configuration,
+		openMovieDetail,
+		closeMovieDetail,
+		detailed,
+		loadMoreMovies,
+		page,
+		totalPages
+	} = props
 
 	const filter_ = useDebounce(filter, 500)
 
-	const [detail, setDetail] = useState<boolean>(false)
+	const hasMore = page < totalPages
 
 	const _resolveImage = (src: string | null) =>
 		configuration && src ? resolveImageSize(configuration, src, 'backdrop', 780) : ''
 
+	const _resolvePoster = (src: string | null) =>
+		configuration && src ? resolveImageSize(configuration, src, 'poster', 180) : ''
+
 	useEffect(() => {
 		fetchMovies()
-	}, [fetchMovies, filter_])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [filter_])
 
 	return (
 		<div className={classNames(styles.List, className)}>
@@ -28,22 +45,38 @@ const List: React.FC<ListProps.Props> = props => {
 				<MovieFilter className={styles.MovieFilter} type='header' />
 			</div>
 			<div className={styles.MoviesList}>
-				{movies.map(movie => (
-					<MovieCard
-						key={movie.id}
-						onClick={setDetail.bind(null, !detail && true)}
-						movie={movie}
-						className={styles.MovieCard}
-						background={_resolveImage(movie.backdrop_path)}
-					/>
-				))}
+				<InfiniteScroll
+					pageStart={0}
+					loadMore={loadMoreMovies}
+					hasMore={hasMore}
+					loader={
+						<div className={styles.ListLoading} key={0}>
+							Loading ...
+						</div>
+					}
+				>
+					{movies
+						// .sort((a, b) => new Date(a.release_date) < new Date(b.release_date) ? 1 : -1)
+						.map(movie => (
+							<MovieCard
+								key={movie.id}
+								onClick={openMovieDetail.bind(null, movie.id)}
+								movie={movie}
+								className={styles.MovieCard}
+								background={_resolveImage(movie.backdrop_path)}
+							/>
+						))}
+				</InfiniteScroll>
 			</div>
-			{detail && <div className={styles.MovieSidePanelContainer}></div>}
+			{detailed.open && <div className={styles.MovieSidePanelContainer}></div>}
 			<MovieSide
 				className={classNames(styles.MovieSidePanel, {
-					[styles.Active]: detail
+					[styles.Active]: detailed.open
 				})}
-				onClose={setDetail.bind(null, false)}
+				movie={detailed.movie}
+				loading={detailed.loading}
+				poster={detailed.movie ? _resolvePoster(detailed.movie.poster_path) : undefined}
+				onClose={closeMovieDetail}
 			/>
 		</div>
 	)
@@ -61,7 +94,10 @@ const mapStateToProps = (state: IAppState): ListProps.Store => ({
 const mapDispatchToProps: MapDispatchToProps<ListProps.Dispatch, ListProps.Own> = (
 	dispatch: TDispatch
 ) => ({
-	fetchMovies: () => dispatch({ type: MoviesActions.FETCH_MOVIES, payload: {} })
+	fetchMovies: () => dispatch({ type: MoviesActions.FETCH_MOVIES, payload: {} }),
+	loadMoreMovies: () => dispatch({ type: MoviesActions.LOAD_MORE_MOVIES, payload: {} }),
+	openMovieDetail: (id: number) => dispatch({ type: MoviesActions.OPEN_DETAILED, payload: { id } }),
+	closeMovieDetail: () => dispatch({ type: MoviesActions.CLOSE_DETAILED, payload: {} })
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(List)

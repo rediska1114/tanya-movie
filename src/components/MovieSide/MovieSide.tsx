@@ -3,61 +3,57 @@ import styles from './MovieSide.module.scss'
 import classNames from 'classnames'
 import { MovieSideProps } from './MovieSide.d'
 import { useOnClickOutside } from '../../hooks'
+import { getMovieDuration, getMoneys } from '../../utils'
 
 const MovieSide: React.FC<MovieSideProps.Props> = props => {
-	const { className, onClose, ...otherProps } = props
+	const { className, onClose, movie, loading, poster, ...otherProps } = props
 
 	const ref = useRef<HTMLDivElement | null>(null)
 
 	useOnClickOutside(ref, e => {
 		if (onClose) onClose()
-
-		e.stopPropagation()
 	})
 
-	const info = [
-		{
-			title: 'Slogan',
-			text: 'Yo yo Piraka!'
-		},
-		{
-			title: 'Rating',
-			text: '10/10'
-		},
-		{
-			title: 'Release Date',
-			text: '2008'
-		},
-		{
-			title: 'Duration',
-			text: '1:52:00'
-		},
-		{
-			title: 'Genres',
-			text: 'Comedy, Action, Criminal'
-		},
-		{
-			title: 'Cast',
-			text:
-				'Сет Роген, Джеймс Франко, Дэнни МакБрайд, Кевин Корригэн, Крэйг Робинсон, Гэри Коул, Рози Перес, Эд Бегли мл., Нора Данн, Эмбер Хёрд'
-		}
-	]
+	const info = movie
+		? [
+				{
+					title: 'Rating',
+					text: movie.vote_average + '/10'
+				},
+				{
+					title: 'Release Date',
+					text: movie.release_date.split('-')[0]
+				},
+				{
+					title: 'Budget',
+					text: getMoneys(movie.budget)
+				},
+				{
+					title: 'Revenue',
+					text: getMoneys(movie.revenue)
+				},
+				{
+					title: 'Duration',
+					text: getMovieDuration(movie.runtime)
+				},
+				{
+					title: 'Genres',
+					text: movie.genres.map(g => g.name).join(', ')
+				},
+				{
+					title: 'Cast',
+					text: movie.credits.cast.map(c => c.name).join(', ')
+				}
+		  ]
+		: []
 
 	return (
 		<div className={classNames(styles.MovieSide, className)} {...otherProps} ref={ref}>
 			<div className={styles.Top}>
-				<img
-					className={styles.Poster}
-					src={'https://sun1-15.userapi.com/R4eYN_9NTMtTJe4qSUnm0hy1KOkxtOGjEekP9w/5tZ0gF3kBtM.jpg'}
-					alt=''
-				/>
+				<img className={styles.Poster} src={poster} alt='' />
 				<div className={styles.TitleTextContainer}>
-					<div className={styles.Title}>Piraka Movie</div>
-					<div className={styles.Text}>
-						Раздолбай и любитель травки случайно становится свидетелем убийства и, прихватив своего
-						дружка, такого же лузера, как он, пытается свалить из города, спасаясь от Плохих Парней.
-						Дело пахнет керосином, ведь мафия решила заставить приятелей замолчать навсегда.
-					</div>
+					<div className={styles.Title}>{movie?.title}</div>
+					<div className={styles.Text}>{movie?.overview}</div>
 				</div>
 			</div>
 			<div className={styles.Info}>

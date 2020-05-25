@@ -13,6 +13,9 @@ export declare namespace ListProps {
 
 	interface Dispatch {
 		fetchMovies: () => void
+		openMovieDetail: (id: number) => void
+		closeMovieDetail: () => void
+		loadMoreMovies: () => void
 	}
 
 	interface State {}

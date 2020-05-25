@@ -6,3 +6,8 @@ export function clone<T = any>(subject: T): T {
 		return subject
 	}
 }
+
+export function removeDuplicates<T extends { id: number } = any>(items: T[]): T[] {
+	const obj: Record<string, T> = items.reduce((all, cur) => ({ ...all, ['#' + cur.id]: cur }), {})
+	return Object.keys(obj).map(id => obj[id])
+}

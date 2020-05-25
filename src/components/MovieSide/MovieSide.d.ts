@@ -1,7 +1,13 @@
+import { IDetailedMovie } from '../../interfaces'
+
 export declare namespace MovieSideProps {
 	interface Own
 		extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 		onClose?(): void
+
+		movie?: IDetailedMovie
+		loading?: boolean
+		poster?: string
 	}
 
 	interface Store {} // extends IRootState, IMovieSideState

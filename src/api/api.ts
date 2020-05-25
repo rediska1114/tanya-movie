@@ -17,7 +17,7 @@ export class API {
 				.get<IApiResponse<T>>(url, {
 					...config,
 					params: {
-						language: 'ru',
+						// language: 'ru',
 						...data
 					}
 				})
@@ -33,7 +33,7 @@ export class API {
 
 	static DiscoverMovies = (page: number, genres: number[], rating: number[], release: number[]) => {
 		return API.request<ApiResponse.Discover.Movie>('/discover/movie', {
-			region: 'RU',
+			region: 'us',
 			sort_by: 'release_date.desc',
 			page,
 			with_genres: genres.join('|'),
@@ -43,6 +43,12 @@ export class API {
 			'release_date.lte': release[1] < CURRENT_YEAR ? `${release[1]}-12-31` : new Date()
 		})
 	}
+	static SearchMovies = (page: number, query: string) => {
+		return API.request<ApiResponse.Search.Movie>('/search/movie', {
+			page,
+			query
+		})
+	}
 
 	static Configuration = () => {
 		return API.request<ApiResponse.Configuration>('/configuration')
@@ -50,5 +56,11 @@ export class API {
 
 	static GetGenres = () => {
 		return API.request<ApiResponse.Genre.Movie.List>('/genre/movie/list').then(data => data.genres)
+	}
+
+	static GetMovieDetail = (id: number) => {
+		return API.request<ApiResponse.Movie.GetDetails>(`/movie/${id}`, {
+			append_to_response: 'credits'
+		})
 	}
 }
