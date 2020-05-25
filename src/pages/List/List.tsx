@@ -6,7 +6,7 @@ import { MovieFilter, MovieCard, MovieSide } from '../../components'
 import { connect, MapDispatchToProps } from 'react-redux'
 import { IAppState, TDispatch, MoviesActions } from '../../store'
 import useDebounce from '../../hooks/useDebounce'
-import { resolveImageSize } from '../../utils'
+import { resolveImageSize, pure } from '../../utils'
 import InfiniteScroll from 'react-infinite-scroller'
 
 const List: React.FC<ListProps.Props> = props => {
@@ -98,4 +98,4 @@ const mapDispatchToProps: MapDispatchToProps<ListProps.Dispatch, ListProps.Own> 
 	closeMovieDetail: () => dispatch({ type: MoviesActions.CLOSE_DETAILED, payload: {} })
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(List)
+export default connect(mapStateToProps, mapDispatchToProps)(pure(List))

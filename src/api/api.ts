@@ -1,14 +1,14 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import { IApiResponse, ApiResponse } from '../interfaces'
 
-const CURRENT_YEAR = new Date().getFullYear()
-
-const api = axios.create({
+export const api = axios.create({
 	baseURL: process.env.REACT_APP_API_HOST || '/',
 	headers: {
 		Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`
 	}
 })
+
+const CURRENT_YEAR = new Date().getFullYear()
 
 export class API {
 	static request = <T = any>(url: string, data?: any, config?: AxiosRequestConfig) => {

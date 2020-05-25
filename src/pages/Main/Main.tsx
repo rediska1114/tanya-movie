@@ -11,6 +11,7 @@ const Main: React.FC<MainProps.Props> = props => {
 	const { className } = props
 
 	const onSubmit = () => History.push(routes.list)
+
 	return (
 		<div className={classNames(styles.Main, className)}>
 			<Logo className={styles.Logo} />

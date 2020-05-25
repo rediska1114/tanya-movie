@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './App.module.scss'
 import classNames from 'classnames'
 import { AppProps } from './App.d'
-import { History } from '../utils'
+import { History, pure } from '../utils'
 import { Router, Switch, Route } from 'react-router'
 import { routes } from '../enums'
 import { Main, List } from '../pages'
@@ -35,4 +35,4 @@ const mapDispatchToProps: MapDispatchToProps<AppProps.Dispatch, AppProps.Own> = 
 	// 	dispatch({ type: AppActions.TEST, payload: { test } })
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(pure(App))

@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import { SliderProps } from './Slider.d'
 
 import Range from '@material-ui/core/Slider'
+import { pure } from '../../utils'
 
 const Slider: React.FC<SliderProps.Props> = props => {
 	const { className, onChange, value, ...otherProps } = props
@@ -29,22 +30,4 @@ const Slider: React.FC<SliderProps.Props> = props => {
 
 Slider.defaultProps = {}
 
-// const mapStateToProps = (state: IAppState): SliderProps.Store => ({
-// 	...state.root,
-// 	...state.Slider
-// });
-
-// const mapDispatchToProps: MapDispatchToProps<
-// 	SliderProps.Dispatch,
-// 	SliderProps.Own
-// > = (dispatch: TDispatch) => ({
-// 	setTest: (test: test) =>
-// 		dispatch({ type: SliderActions.TEST, payload: { test } })
-// });
-
-// export default connect(
-// 	mapStateToProps,
-// 	mapDispatchToProps
-// )(Slider);
-
-export default Slider
+export default pure(Slider)

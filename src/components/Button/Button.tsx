@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './Button.module.scss'
 import classNames from 'classnames'
 import { ButtonProps } from './Button.d'
+import { pure } from '../../utils'
 
 const Button: React.FC<ButtonProps.Props> = props => {
 	const { className, children, ...othersProps } = props
@@ -15,22 +16,4 @@ const Button: React.FC<ButtonProps.Props> = props => {
 
 Button.defaultProps = {}
 
-// const mapStateToProps = (state: IAppState): ButtonProps.Store => ({
-// 	...state.root,
-// 	...state.Button
-// });
-
-// const mapDispatchToProps: MapDispatchToProps<
-// 	ButtonProps.Dispatch,
-// 	ButtonProps.Own
-// > = (dispatch: TDispatch) => ({
-// 	setTest: (test: test) =>
-// 		dispatch({ type: ButtonActions.TEST, payload: { test } })
-// });
-
-// export default connect(
-// 	mapStateToProps,
-// 	mapDispatchToProps
-// )(Button);
-
-export default Button
+export default pure(Button)

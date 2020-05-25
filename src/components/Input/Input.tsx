@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './Input.module.scss'
 import classNames from 'classnames'
 import { InputProps } from './Input.d'
+import { pure } from '../../utils'
 
 const Input: React.FC<InputProps.Props> = props => {
 	const { className, onChange, ...otherProps } = props
@@ -19,4 +20,4 @@ const Input: React.FC<InputProps.Props> = props => {
 
 Input.defaultProps = {}
 
-export default Input
+export default pure(Input)

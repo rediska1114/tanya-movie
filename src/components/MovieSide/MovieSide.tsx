@@ -3,7 +3,7 @@ import styles from './MovieSide.module.scss'
 import classNames from 'classnames'
 import { MovieSideProps } from './MovieSide.d'
 import { useOnClickOutside } from '../../hooks'
-import { getMovieDuration, getMoneys } from '../../utils'
+import { getMovieDuration, getMoneys, pure } from '../../utils'
 
 const MovieSide: React.FC<MovieSideProps.Props> = props => {
 	const { className, onClose, movie, loading, poster, ...otherProps } = props
@@ -74,4 +74,4 @@ const MovieSide: React.FC<MovieSideProps.Props> = props => {
 
 MovieSide.defaultProps = {}
 
-export default MovieSide
+export default pure(MovieSide)

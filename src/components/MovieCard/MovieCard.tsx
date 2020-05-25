@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './MovieCard.module.scss'
 import classNames from 'classnames'
 import { MovieCardProps } from './MovieCard.d'
+import { pure } from '../../utils'
 
 const MovieCard: React.FC<MovieCardProps.Props> = props => {
 	const { className, movie, background, ...otherProps } = props
@@ -29,4 +30,4 @@ const MovieCard: React.FC<MovieCardProps.Props> = props => {
 
 MovieCard.defaultProps = {}
 
-export default MovieCard
+export default pure(MovieCard)
