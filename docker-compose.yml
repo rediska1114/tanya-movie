@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   tanya-movie:
-    image: tanya/movie:${VERSION}
+    image: tanya/movie:latest
     container_name: tanya-movie
     restart: always
     build:
