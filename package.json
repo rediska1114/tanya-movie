@@ -16,6 +16,7 @@
 		"@types/react-router-dom": "^5.1.5",
 		"axios": "^0.19.2",
 		"classnames": "^2.2.6",
+		"gzipper": "^3.7.0",
 		"node-sass": "npm:sass@^1.26.5",
 		"object-hash": "^2.0.3",
 		"react": "^16.13.1",
@@ -36,6 +37,7 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
+		"gzip": "gzipper --verbose ./build",
 		"prettier": "prettier --write \"src/**/*.{ts,tsx,css,scss,md,json,js,jsx}\""
 	},
 	"devDependencies": {

@@ -1,0 +1,18 @@
+version: '3.5'
+
+services:
+  magenta-frontend:
+    image: tanua/movie:${VERSION}
+    container_name: tanua-movie
+    restart: always
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    command: nginx -g 'daemon off;'
+    networks: 
+      - tanua-movie-net
+
+networks:
+  tanua-movie-net:
+    external:
+      name: tanua-movie-network
