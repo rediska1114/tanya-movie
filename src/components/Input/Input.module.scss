@@ -2,6 +2,7 @@
 	display: flex;
 	flex: 1 0;
 	height: 100%;
+	background-color: rgba(0, 0, 0, 0);
 	background-color: var(--color-transparent);
 	border: none;
 
@@ -10,13 +11,14 @@
 	line-height: 25px;
 	// padding: 12px 0;
 	height: 48px;
-
+	color: #fff;
 	color: var(--color-typo-main);
 
 	&:focus {
 		outline: none;
 	}
 	&::placeholder {
+		color: #999a9b;
 		color: var(--color-typo-disabled);
 	}
 }
@@ -25,6 +27,7 @@
 	align-items: center;
 	flex-shrink: 0;
 	border-radius: 8px;
+	background-color: #383838;
 	background-color: var(--background-control);
 	padding: 0 12px;
 

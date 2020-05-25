@@ -12,13 +12,24 @@
 	display: flex;
 }
 
-.Poster {
+.Poster,
+.PosterThumb {
 	height: 280px;
 	max-width: 185px;
 	width: 100%;
+	border-radius: 8px;
 	border-radius: var(--border-radius);
 	flex-shrink: 0;
+	background-color: #383838;
 	background-color: var(--background-control);
+}
+
+.PosterThumb {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #999a9b;
+	color: var(--color-typo-disabled);
 }
 
 .TitleTextContainer {
@@ -48,6 +59,7 @@
 
 	padding: 12px 0;
 	& + .InfoRow {
+		border-top: 1px solid rgba(251, 251, 251, 0.15);
 		border-top: 1px solid var(--color-divider);
 	}
 }

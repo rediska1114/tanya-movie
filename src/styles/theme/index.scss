@@ -8,9 +8,11 @@
 
 .default-theme {
 	.MuiSlider-rail {
+		background-color: #383838;
 		background: var(--background-control);
 	}
 	.MuiSlider-track {
+		background: linear-gradient(90deg, #0094ff 0%, #43b0ff 100%);
 		background: var(--background-primary);
 	}
 	.MuiSlider-thumb {
@@ -32,9 +34,10 @@
 
 		& > span {
 			transform: none;
-			width: unset;
+			width: initial;
 
 			height: 20px;
+			border-radius: 4px;
 			border-radius: var(--border-radius-small);
 			background: #0094ff;
 			& > span {

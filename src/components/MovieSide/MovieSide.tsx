@@ -54,7 +54,11 @@ const MovieSide: React.FC<MovieSideProps.Props> = props => {
 	return (
 		<div className={classNames(styles.MovieSide, className)} {...otherProps} ref={ref}>
 			<div className={styles.Top}>
-				<img className={styles.Poster} src={poster} alt='' />
+				{poster ? (
+					<img className={styles.Poster} src={poster} alt='' />
+				) : (
+					<div className={styles.PosterThumb}>No Image</div>
+				)}
 				<div className={styles.TitleTextContainer}>
 					<div className={styles.Title}>{movie?.title}</div>
 					<div className={styles.Text}>{movie?.overview}</div>

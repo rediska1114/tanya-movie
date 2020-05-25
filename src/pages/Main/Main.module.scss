@@ -13,8 +13,10 @@
 .SourceCode {
 	margin-top: 40px;
 	a {
+		color: #999a9b;
 		color: var(--color-typo-disabled);
 		text-decoration: none;
+		border-bottom: 1px solid rgba(251, 251, 251, 0.15);
 		border-bottom: 1px solid var(--color-divider);
 	}
 }
