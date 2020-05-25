@@ -22,9 +22,9 @@
 	}
 }
 .MovieFilter {
-	max-width: 1000px;
-	border-radius: unset;
-	background-color: var(--color-transparent);
+	max-width: 1000px !important;
+	border-radius: unset !important;
+	background-color: var(--color-transparent) !important;
 }
 
 .MoviesList {

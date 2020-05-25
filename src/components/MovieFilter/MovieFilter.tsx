@@ -63,6 +63,7 @@ const MovieFilter: React.FC<MovieFilterProps.Props> = props => {
 			</div>
 			<AnimateHeight
 				height={isFiltersOpen || type === 'block' ? 'auto' : 0}
+				className={styles.FilterContainer}
 				contentClassName={styles.FilterWrapper}
 				easing='ease'
 			>

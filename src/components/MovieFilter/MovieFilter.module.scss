@@ -29,11 +29,6 @@
 
 .FilterButton {
 	min-width: unset !important;
-	// background: var(--background-control) !important;
-	// box-shadow: 0px 2px 8px var(--color-shadow) !important;
-	// &:hover {
-	// 	box-shadow: 0px 2px 18px var(--color-shadow-light) !important;
-	// }
 }
 
 .Logo {
@@ -46,6 +41,9 @@
 
 .Search {
 	flex: 1;
+}
+.FilterContainer {
+	width: 100%;
 }
 .FilterWrapper {
 	display: flex;

@@ -26,7 +26,7 @@ const MovieSide: React.FC<MovieSideProps.Props> = props => {
 				},
 				{
 					title: 'Release Date',
-					text: movie.release_date.split('-')[0]
+					text: movie.release_date.split('-').reverse().join('.')
 				},
 				{
 					title: 'Budget',
