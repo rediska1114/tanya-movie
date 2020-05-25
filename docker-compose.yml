@@ -9,10 +9,9 @@ services:
       context: .
       dockerfile: ./nginx/Dockerfile
     command: nginx -g 'daemon off;'
-    networks: 
-      - tanua-movie-net
+    networks:
+      - tanya-movie-net
 
 networks:
-  tanua-movie-net:
-    external:
-      name: tanua-movie-network
+  tanya-movie-net:
+    name: tanya-movie-network
