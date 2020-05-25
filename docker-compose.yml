@@ -2,8 +2,8 @@ version: '3.5'
 
 services:
   magenta-frontend:
-    image: tanua/movie:${VERSION}
-    container_name: tanua-movie
+    image: tanya/movie:${VERSION}
+    container_name: tanya-movie
     restart: always
     build:
       context: .
