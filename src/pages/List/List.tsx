@@ -24,7 +24,7 @@ const List: React.FC<ListProps.Props> = props => {
 		totalPages
 	} = props
 
-	const filter_ = useDebounce(filter, 500)
+	const filter_ = useDebounce(filter, 300)
 
 	const hasMore = page < totalPages
 
@@ -55,17 +55,15 @@ const List: React.FC<ListProps.Props> = props => {
 						</div>
 					}
 				>
-					{movies
-						// .sort((a, b) => new Date(a.release_date) < new Date(b.release_date) ? 1 : -1)
-						.map(movie => (
-							<MovieCard
-								key={movie.id}
-								onClick={openMovieDetail.bind(null, movie.id)}
-								movie={movie}
-								className={styles.MovieCard}
-								background={_resolveImage(movie.backdrop_path)}
-							/>
-						))}
+					{movies.map(movie => (
+						<MovieCard
+							key={movie.id}
+							onClick={openMovieDetail.bind(null, movie.id)}
+							movie={movie}
+							className={styles.MovieCard}
+							background={_resolveImage(movie.backdrop_path)}
+						/>
+					))}
 				</InfiniteScroll>
 			</div>
 			{detailed.open && <div className={styles.MovieSidePanelContainer}></div>}

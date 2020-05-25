@@ -17,6 +17,10 @@ const MovieSide: React.FC<MovieSideProps.Props> = props => {
 	const info = movie
 		? [
 				{
+					title: 'Slogan',
+					text: movie.tagline || '–'
+				},
+				{
 					title: 'Rating',
 					text: movie.vote_average + '/10'
 				},

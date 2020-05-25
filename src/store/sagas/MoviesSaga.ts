@@ -48,6 +48,7 @@ function* FetchMoviesSaga({ type }: IAction): any {
 					movie =>
 						getYear(movie.release_date) >= release[0] && getYear(movie.release_date) <= release[1]
 				)
+				.sort((a, b) => (new Date(a.release_date) < new Date(b.release_date) ? 1 : -1))
 
 			page = data.page
 			totalPages = data.total_pages
