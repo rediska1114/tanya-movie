@@ -4,7 +4,6 @@ import classNames from 'classnames'
 import { SliderProps } from './Slider.d'
 
 import Range from '@material-ui/core/Slider'
-import { pure } from '../../utils'
 
 const Slider: React.FC<SliderProps.Props> = props => {
 	const { className, onChange, value, ...otherProps } = props
@@ -30,4 +29,4 @@ const Slider: React.FC<SliderProps.Props> = props => {
 
 Slider.defaultProps = {}
 
-export default pure(Slider)
+export default Slider

@@ -12,7 +12,6 @@ import { ReactComponent as Logo } from '../../assets/images/logo.svg'
 import { ReactComponent as FilterIcon } from '../../assets/images/ic_filter.svg'
 import { Link } from 'react-router-dom'
 import { routes } from '../../enums'
-import { pure } from '../../utils'
 
 const CURRENT_YEAR = new Date().getFullYear()
 
@@ -138,4 +137,4 @@ const mapDispatchToProps: MapDispatchToProps<MovieFilterProps.Dispatch, MovieFil
 		dispatch({ type: FilterActions.SET_VALUE, payload: { name, value } })
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(pure(MovieFilter))
+export default connect(mapStateToProps, mapDispatchToProps)(MovieFilter)

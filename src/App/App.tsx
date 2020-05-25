@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from 'react'
 import styles from './App.module.scss'
 import classNames from 'classnames'
 import { AppProps } from './App.d'
-import { History, pure } from '../utils'
+import { History } from '../utils'
 import { Router, Switch, Route } from 'react-router'
 import { routes } from '../enums'
 import { connect, MapDispatchToProps } from 'react-redux'
@@ -39,4 +39,4 @@ const mapDispatchToProps: MapDispatchToProps<AppProps.Dispatch, AppProps.Own> = 
 	// 	dispatch({ type: AppActions.TEST, payload: { test } })
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(pure(App))
+export default connect(mapStateToProps, mapDispatchToProps)(App)
